@@ -1,0 +1,53 @@
+# Byte-compiled / optimized / compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+*.env
+
+# Flask cache files
+instance/
+*.db
+*.sqlite3
+
+# Pytest cache
+.pytest_cache/
+
+# Flask-related logs and temp files
+*.log
+*.bak
+*.swp
+*.tmp
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+.nox/
+.tox/
+*.cover
+coverage.xml
+
+# Build files
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Docker files
+docker-compose.override.yml
+.dockerignore
