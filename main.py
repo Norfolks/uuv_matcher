@@ -1,6 +1,7 @@
 from positions import *
+from flask import Flask
 import matplotlib.pyplot as plt
-from icp import get_distance_after_icp
+from icp import icp
 
 EXPECTED_MOVEMENT = 5
 
@@ -16,6 +17,9 @@ NEW_DISTANCE_MAX = 7
 
 
 
+app = Flask(__name__)
+
+@app.route("/get_distance")
 def run():
     init_coordinates = np.loadtxt("init_coordinates", dtype=float)
     new_coordinates = np.loadtxt("new_coordinates", dtype=float)
@@ -40,19 +44,13 @@ def run():
     #
     # plt.show()
 
-
-
     init_cart_3d = pol2cart(init_coordinates)
     new_cart_3d = pol2cart(new_coordinates)
 
-    write_coords2file(init_cart_3d, "init.pcd")
-    write_coords2file(new_cart_3d, "target.pcd")
 
-    meters_moved = get_distance_after_icp()
-    print(f"Meters moved: {meters_moved}")
+    _T, distances, _i = icp(init_cart_3d, new_cart_3d)
 
-
-
+    return "{:10.6f}".format(distances.mean())
 
 
 
